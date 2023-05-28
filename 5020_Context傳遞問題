@@ -1,3 +1,4 @@
+參考資料：https://ithelp.ithome.com.tw/articles/10221199
 簡單說明，因為sqlite需要回傳訊息到最上層的顯示框【在模擬器裡面，最下方的小氣泡提示】  
 各層間的活動會嚴重影響傳遞結果與傳遞到的層級
 【解法】自己賦予一個最上層新的Application.getInstance()
