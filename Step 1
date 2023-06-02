@@ -36,4 +36,4 @@ class HomeFragment : Fragment() {
     }
 }  
   
-*補充說明*範例專案模板使用了binding技術，因此呼叫Fragment頁面中的元件，應當使用binding.[物件名稱]，而非findViewByID(R.id.[ObjectName])  
+*補充說明*範例專案模板使用了binding技術，因此呼叫Fragment頁面中的元件，應當使用binding.[物件名稱]，而非findViewByID(R.id.[ObjectName])
