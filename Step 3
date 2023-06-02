@@ -1,0 +1,20 @@
+問題3：認識Context
+Context(環境)是Android Studio 運行中重要的一環，無論是Activeu也好，或者Fragment的運行。
+所有活動視野(View)都需要正確的設定與在正確的環境中，程式才會正常運行
+
+因此在初始程式碼中，你會看到，Android Studio 給予你的範例程式做開頭調整了View 的設定(因為context預先就在MainActive處，無須調整)
+
+所以在fragment中你會看到
+範例先是讓fun onCreateView 繼承父輩(在Java中使用extend kotlin使用[:]) View
+ovverid fun onCreateView(input Require):View{}
+調整了view的活動
+
+而本次程式碼因後續使用到動態Spinner(下拉式選單)(透過Adapter連接器)，因此會產生運行環境需要改變的問題
+
+//解決方法//
+加入以下程式碼：
+val fragmentContext: Context = requireContext()
+調正運行環境，而在之後需要用到context的地方輸入context：
+Example：
+val friDbHp = MyDBHelper(context, dbFILE, null, 1)
+便可正常修改運行環境
