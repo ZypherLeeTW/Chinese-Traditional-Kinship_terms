@@ -1,2 +1,8 @@
 問題一：Fragment操作  
 使用範例：Android Studio 內建 Fragment Example  
+APP結構 ->  
+  
+顯示層：  
+1.Main Active 分為兩層 上方第一層放置Navigation.xml(連接)三個ui Fragment  
+下層創建一個menu.xml放入充當顯示下方按鈕的對應三個選單，圖案與名稱分別連接
+ui flie 分別放入三個Fragment頁面【Home】【Dashboard】【Notifications】透過
