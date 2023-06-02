@@ -12,6 +12,7 @@ APP結構 ->
 1. MianAvtive 呼叫Navigation連接器，綁定menu按鈕與Fragment之間的互動，實現Fragme頁面的跳轉動作  
 2. *修改* 刪除各資料夾中[Name]ViewModel.kt 並取消[Name]Fragment.kt 中關於textView的相關程式碼(不需要)  
     僅保留自身Fragment綁定用以在Navigation觸發時跳轉  
+    *注意*在設定其他分頁時，程式碼內之名稱應該與分頁名稱相同
     
 class HomeFragment : Fragment() {
 
@@ -33,4 +34,6 @@ class HomeFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-}
+}  
+  
+*補充說明*範例專案模板使用了binding技術，因此呼叫Fragment頁面中的元件，應當使用binding.[物件名稱]，而非findViewByID(R.id.[ObjectName])  
