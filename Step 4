@@ -1,0 +1,54 @@
+問題4：動態spinner實現
+目的:實現使用者可以透過下拉式選單，直觀取得Database內數據，並透過一系列調整，使得使用者能夠快速更新資料庫內的特定目標
+本案例子-
+資料庫：call['姓名','稱呼']
+
+結果：
+1.創建一個選單能夠自動調取call.db內的['姓名']欄位，並取得對應['稱呼']欄位，放入旁邊的EditText中
+2.按下更新按鈕，將EditText內的文字反向更新對應['姓名']欄位，資料庫內的['稱呼']欄位
+3.刷新Spinner顯示
+
+關鍵程式碼:
+(變數說明：
+dataList:call.db中，['姓名']欄位的所有資料
+dataList2:call.db中，['稱呼']欄位的所有資料
+)
+
+//Spinner Declare
+private lateinit var spinner: Spinner
+
+//Check if the database is empty.
+        //If it is not, then use an adapter to bind the Spinner
+        //And update its options with the dataList.
+        if(dataList.isNotEmpty()){
+            //Spinner
+            spinner = binding.spinner
+            val adapter = ArrayAdapter(fragmentContext, R.layout.simple_spinner_item, dataList)//官方提供的基礎simple_spinner,輸入資料以dataList
+            adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)//連接器設定
+            spinner.adapter = adapter//連接器啟動更新
+        }else{//空值除錯，避免崩潰
+            val tmpArray = ArrayList<String>()
+            tmpArray.add("")//插入任意值
+            spinner = binding.spinner
+            val adapter = ArrayAdapter(fragmentContext, R.layout.simple_spinner_item, tmpArray)
+            adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
+            spinner.adapter = adapter
+        }
+更多問題:
+當使用Adapter修改了Spinner內的參數後
+原先onItemSelectedListener()取得選單名稱的方式便需要更改為
+
+//Spinner Listener
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                //Spinner選擇的內容(Sting)
+                selectedItem = parent.getItemAtPosition(position).toString()
+                //取得符合DB name 的 Address 數值，等待修改
+                if(dataList.isNotEmpty()) {//預防崩潰
+                    val addresstmp = dataList2[dataList.indexOf(selectedItem)]
+                    binding.EditText.setText(addresstmp)
+                }
+            }
+            override fun onNothingSelected(parent: AdapterView<*>) {
+                // 當沒有選擇任何選項時觸發的處理
+            }
