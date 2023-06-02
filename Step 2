@@ -19,3 +19,5 @@ ovveride fun onClick(v:View){}
 
 5. 創建出ArrayList<Type>時，在撰寫代碼的過程中，如果有會在ArrayList陣列為空時調用到整個活動，請[務必]使用If(ArrayList.isNotEmpty){}保護程式碼
     否則盡管使用fun(){} 或者塞入一般If(){} 辦別式中，都會導致程式，因為嚐試讀取[超出陣列範圍]的空值而崩潰 
+
+6.Sqlite操作參考導師提供的資料與官方網站[附錄1]
