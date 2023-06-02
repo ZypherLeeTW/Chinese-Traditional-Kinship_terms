@@ -3,6 +3,34 @@
 APP結構 ->  
   
 顯示層：  
-1.Main Active 分為兩層 上方第一層放置Navigation.xml(連接)三個ui Fragment  
-下層創建一個menu.xml放入充當顯示下方按鈕的對應三個選單，圖案與名稱分別連接
-ui flie 分別放入三個Fragment頁面【Home】【Dashboard】【Notifications】透過
+1. Main Active 分為兩層 上方第一層放置Navigation.xml(連接)  
+   下層創建一個menu.xml放入充當顯示下方按鈕的對應三個選單，圖案與名稱分別各自設定  
+2. ui flie 分別放入三個Fragment頁面【Home】【Dashboard】【Notifications】透過Navigation.xml連回MainActive  
+  
+代碼層：  
+{*注意* 範例所有Active與Fragment都透過【ActivityMainBinding】的方式進行綁定，因此與初始MainActive的宣告方式(R.layout.*)不同}  
+1. MianAvtive 呼叫Navigation連接器，綁定menu按鈕與Fragment之間的互動，實現Fragme頁面的跳轉動作  
+2. *修改* 刪除各資料夾中[Name]ViewModel.kt 並取消[Name]Fragment.kt 中關於textView的相關程式碼(不需要)  
+    僅保留自身Fragment綁定用以在Navigation觸發時跳轉  
+    
+class HomeFragment : Fragment() {
+
+    private var _binding: FragmentHomeBinding? = null
+    private val binding get() = _binding!!
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+
+
+        return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+}
